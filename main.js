@@ -13,16 +13,6 @@ function random(min, max) {
   return num;
 }
 
-// Adams tillägg
-
-function numberOfBalls() {
-  let amount = document.querySelector("input").value;
-  return amount;
-}
-
-
-//
-
 function Ball(x, y, velX, velY, color, size) {
     this.x = x;
     this.y = y;
