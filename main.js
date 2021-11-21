@@ -57,6 +57,7 @@ let balls = [];
 function changeAmountOfBalls() {
   balls = []
   let amountChange = (document.querySelector("input").value);
+  start();
   amountOfBalls(amountChange);
 }
 
@@ -112,16 +113,18 @@ function amountOfBalls(amount) {
 }
 amountOfBalls(15)
 
-
+let onGoing = true;
 Ball.prototype.collisionDetect = function() {
-  for (let j = 0; j < balls.length; j++) {
-    if (!(this === balls[j])) {
-      const dx = this.x - balls[j].x;
-      const dy = this.y - balls[j].y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+  if (onGoing == true) {
+    for (let j = 0; j < balls.length; j++) {
+      if (!(this === balls[j])) {
+        const dx = this.x - balls[j].x;
+        const dy = this.y - balls[j].y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < this.size + balls[j].size) {
-        balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
+        if (distance < this.size + balls[j].size) {
+          balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) +')';
+        }
       }
     }
   }
@@ -132,6 +135,7 @@ let velXSave = [];
 let velYSave = [];
 
 function pause() {
+  onGoing = false;
   let i = 0;
   while (i < balls.length) {
 
@@ -156,6 +160,7 @@ function pause() {
 }
 
 function start() {
+  onGoing = true;
   let i = 0;
   while (i < balls.length) {
     x = balls[0].x;
