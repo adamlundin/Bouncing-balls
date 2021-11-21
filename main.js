@@ -52,54 +52,66 @@ function Ball(x, y, velX, velY, color, size) {
   
 let balls = [];
 
-while (balls.length < 15) {
-  // Adams code: Det är en 10% chans att en boll blir extra stor
-  let big = random(1,10);
-  let size;
-  if (big == 1) {
-    size = 35;
-  }
-  else {
-    size = random(10,20);
-  }
-  //
 
-  // Adams code: Har gjort så att om en boll har hastigheten -1,0,1 så ändras den till -10 eller 10
-  let speedX = random(-7,7);
-  let speedY = random(-7,7);
-  
-  if (speedX >= -1 && speedX <= 1) {
-    let direction = random(1,2)
-    if (direction = 1) {
-      speedX = 10;
-    } else {
-      speedX = -10;
-    }
-  }
-
-  if (speedY >= -1 && speedY <= 1) {
-    let direction = random(1,2)
-    if (direction = 1) {
-      speedY = 10;
-    } else {
-      speedY = -10;
-    }
-  }
-  // 
-  
-  let ball = new Ball(
-    // ball position always drawn at least one ball width
-    // away from the edge of the canvas, to avoid drawing errors
-    random(0 + size,width - size),
-    random(0 + size,height - size),
-    speedX,
-    speedY,
-    'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
-    size
-  );
-
-  balls.push(ball);
+// Adams code: Gör så att man kan välja hur många bollar det ska finnas men det börjar på 15 vid sid öppning.
+function changeAmountOfBalls() {
+  balls = []
+  let amountChange = (document.querySelector("input").value);
+  amountOfBalls(amountChange);
 }
+
+
+function amountOfBalls(amount) {
+  while (balls.length < amount) {
+    // Adams code: Det är en 10% chans att en boll blir extra stor.
+    let big = random(1,10);
+    let size;
+    if (big == 1) {
+      size = 35;
+    }
+    else {
+      size = random(10,20);
+    }
+    //
+
+    // Adams code: Har gjort så att om en boll har hastigheten -1,0,1 så ändras den till -10 eller 10.
+    let speedX = random(-7,7);
+    let speedY = random(-7,7);
+    
+    if (speedX >= -1 && speedX <= 1) {
+      let direction = random(1,2)
+      if (direction = 1) {
+        speedX = 10;
+      } else {
+        speedX = -10;
+      }
+    }
+
+    if (speedY >= -1 && speedY <= 1) {
+      let direction = random(1,2)
+      if (direction = 1) {
+        speedY = 10;
+      } else {
+        speedY = -10;
+      }
+    }
+
+    //
+    
+    let ball = new Ball(
+      random(0 + size,width - size),
+      random(0 + size,height - size),
+      speedX,
+      speedY,
+      'rgb(' + random(0,255) + ',' + random(0,255) + ',' + random(0,255) +')',
+      size
+    );
+
+    balls.push(ball);
+  }
+}
+amountOfBalls(15)
+
 
 Ball.prototype.collisionDetect = function() {
   for (let j = 0; j < balls.length; j++) {

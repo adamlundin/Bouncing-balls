@@ -26,6 +26,25 @@ html, body {
 
 
   /* Ändringar följer nedanför */
+  .add {
+    font-size: auto;
+    letter-spacing: -1px;
+    position: absolute;
+    margin: 0;
+    top: 30px;
+    left: 55px;
+  }
+
+  input {
+    font-size: auto;
+    letter-spacing: -1px;
+    position: absolute;
+    margin: 0;
+    top: 30px;
+    left: 5px;
+    width: 40px;
+  }
+
   button {
     font-size: auto;
     letter-spacing: -1px;
