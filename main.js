@@ -30,25 +30,27 @@ function Ball(x, y, velX, velY, color, size) {
   }
 
   Ball.prototype.update = function() {
-    if ((this.x + this.size) >= width) {
-      this.velX = -(this.velX);
+    //if (onGoing == true) { ----------------------------------------------- Ersätter start och pasue (är bättre)...
+      if ((this.x + this.size) >= width) {
+        this.velX = -(this.velX);
+      }
+    
+      if ((this.x - this.size) <= 0) {
+        this.velX = -(this.velX);
+      }
+    
+      if ((this.y + this.size) >= height) {
+        this.velY = -(this.velY);
+      }
+    
+      if ((this.y - this.size) <= 0) {
+        this.velY = -(this.velY);
+      }
+    
+      this.x += this.velX;
+      this.y += this.velY;
     }
-  
-    if ((this.x - this.size) <= 0) {
-      this.velX = -(this.velX);
-    }
-  
-    if ((this.y + this.size) >= height) {
-      this.velY = -(this.velY);
-    }
-  
-    if ((this.y - this.size) <= 0) {
-      this.velY = -(this.velY);
-    }
-  
-    this.x += this.velX;
-    this.y += this.velY;
-  }
+  //}
   
 let balls = [];
 
@@ -62,7 +64,7 @@ function changeAmountOfBalls() {
 }
 
 
-function amountOfBalls(amount) {
+function amountOfBalls(amount) {  // La till så att while loopen ligger i en function
   while (balls.length < amount) {
     // Adams code: Det är en 10% chans att en boll blir extra stor.
     let big = random(1,10);
@@ -113,7 +115,7 @@ function amountOfBalls(amount) {
 }
 amountOfBalls(15)
 
-let onGoing = true;
+let onGoing = true; // Adams code: 
 Ball.prototype.collisionDetect = function() {
   if (onGoing == true) {
     for (let j = 0; j < balls.length; j++) {

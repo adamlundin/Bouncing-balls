@@ -27,10 +27,6 @@ html, body {
 
   /* Ändringar följer nedanför */
   .add {
-    font-size: auto;
-    letter-spacing: -1px;
-    position: absolute;
-    margin: 0;
     top: 30px;
     left: 55px;
   }
